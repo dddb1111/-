@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.formsystem.mapper.FertilizersAndPesticidesMapper">
+
+    <!-- 查询所有肥料和农药记录 -->
+    <select id="selectAll" resultType="org.example.formsystem.entity.FertilizersAndPesticides">
+        SELECT
+            id,
+            farm_id AS farmId,
+            type,
+            application_date AS applicationDate,
+            quantity
+        FROM fertilizers_and_pesticides
+    </select>
+
+    <!-- 根据ID查询肥料和农药记录 -->
+    <select id="selectById" resultType="org.example.formsystem.entity.FertilizersAndPesticides" parameterType="java.lang.Integer">
+        SELECT
+            id,
+            farm_id AS farmId,
+            type,
+            application_date AS applicationDate,
+            quantity
+        FROM fertilizers_and_pesticides
+        WHERE id = #{id}
+    </select>
+
+    <!-- 新增肥料和农药记录 -->
+    <insert id="insert" parameterType="org.example.formsystem.entity.FertilizersAndPesticides">
+        INSERT INTO fertilizers_and_pesticides
+            (farm_id, type, application_date, quantity)
+        VALUES
+            (#{farmId}, #{type}, #{applicationDate}, #{quantity})
+    </insert>
+
+    <!-- 更新肥料和农药记录 -->
+    <update id="update" parameterType="org.example.formsystem.entity.FertilizersAndPesticides">
+        UPDATE fertilizers_and_pesticides
+        SET
+            farm_id = #{farmId},
+            type = #{type},
+            application_date = #{applicationDate},
+            quantity = #{quantity}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 删除肥料和农药记录 -->
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM fertilizers_and_pesticides
+        WHERE id = #{id}
+    </delete>
+
+</mapper>

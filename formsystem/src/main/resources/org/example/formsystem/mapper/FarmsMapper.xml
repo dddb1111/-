@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.formsystem.mapper.FarmsMapper">  <!-- 必须与 Mapper 接口全路径一致 -->
+
+    <!-- 查询所有农场 -->
+    <select id="selectAll" resultType="org.example.formsystem.entity.Farms">
+        SELECT id, farm_name AS farmName FROM farms
+    </select>
+
+    <!-- 其他方法（如 selectById、insert 等）的 SQL 定义 -->
+    <select id="selectById" resultType="org.example.formsystem.entity.Farms" parameterType="java.lang.Integer">
+        SELECT id, farm_name AS farmName FROM farms WHERE id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="org.example.formsystem.entity.Farms">
+        INSERT INTO farms (farm_name) VALUES (#{farmName})
+    </insert>
+
+    <update id="update" parameterType="org.example.formsystem.entity.Farms">
+        UPDATE farms SET farm_name = #{farmName} WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM farms WHERE id = #{id}
+    </delete>
+
+</mapper>
